@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="LUXESTORE — Discover premium electronics, fashion, home decor, and accessories. Curated collections with exclusive deals.">
+  <meta name="keywords" content="ecommerce, luxury, electronics, fashion, home, accessories, online shopping">
+  <meta name="author" content="LUXESTORE">
+  <title>LUXESTORE — Premium Lifestyle Shopping</title>
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Lucide Icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="src/styles/main.css">
+</head>
+
+<body>
+
+  <!-- ════════════════════════════════
+       HEADER / NAVIGATION
+       ════════════════════════════════ -->
+  <header class="header" id="main-header">
+    <div class="header-inner">
+      <a href="#" class="logo" id="logo">LUXE<span>STORE</span></a>
+
+      <div class="search-container">
+        <input type="text" class="search-bar" id="search-input" placeholder="Search products, brands, categories..."
+          autocomplete="off">
+        <i data-lucide="search" class="search-icon"></i>
+      </div>
+
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <i data-lucide="moon" id="theme-icon"></i>
+        </button>
+        <button class="icon-btn" id="wishlist-toggle" aria-label="Wishlist">
+          <i data-lucide="heart"></i>
+          <span class="badge" id="wishlist-badge">0</span>
+        </button>
+        <button class="icon-btn" id="cart-toggle" aria-label="Shopping cart">
+          <i data-lucide="shopping-bag"></i>
+          <span class="badge" id="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════
+       HERO SECTION
+       ════════════════════════════════ -->
+  <section class="hero" id="hero-section">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          New Collection 2026
+        </div>
+        <h1>Discover <span class="gradient-text">Premium</span> Lifestyle Products</h1>
+        <p>Curated collections of the finest electronics, fashion, home decor and accessories. Elevate your everyday
+          with products designed for those who appreciate quality.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" id="shop-now-btn">
+            <i data-lucide="shopping-bag" style="width:18px;height:18px"></i>
+            Shop Now
+          </button>
+          <button class="btn btn-secondary" id="explore-btn">
+            <i data-lucide="compass" style="width:18px;height:18px"></i>
+            Explore Collections
+          </button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&q=80"
+          alt="Premium lifestyle products showcase" loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       CATEGORIES BAR
+       ════════════════════════════════ -->
+  <section class="categories-section" id="categories-section">
+    <div class="categories-bar" id="categories-bar">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       TOOLBAR (Sort, Filter, Count)
+       ════════════════════════════════ -->
+  <div class="toolbar" id="toolbar">
+    <div class="toolbar-left">
+      <p class="product-count">Showing <strong id="product-count-num">0</strong> products</p>
+      <select class="sort-select" id="sort-select">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+        <option value="newest">Newest</option>
+      </select>
+    </div>
+    <div class="price-filter">
+      <label for="price-slider">Max Price:</label>
+      <input type="range" class="price-slider" id="price-slider" min="0" max="1000" value="1000" step="10">
+      <span class="price-value" id="price-value">$1000</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       PRODUCT GRID
+       ════════════════════════════════ -->
+  <main class="products-section" id="products-section">
+    <div class="product-grid" id="product-grid">
+      <!-- Populated by JS -->
+    </div>
+  </main>
+
+  <!-- ════════════════════════════════
+       PRODUCT DETAIL MODAL
+       ════════════════════════════════ -->
+  <div class="modal-overlay" id="product-modal-overlay">
+    <div class="modal" id="product-modal">
+      <div class="modal-image">
+        <img id="modal-image" src="" alt="Product detail">
+      </div>
+      <div class="modal-details">
+        <button class="modal-close" id="modal-close" aria-label="Close modal">
+          <i data-lucide="x"></i>
+        </button>
+        <span class="modal-category" id="modal-category"></span>
+        <h2 class="modal-name" id="modal-name"></h2>
+        <div class="modal-rating" id="modal-rating"></div>
+        <p class="modal-description" id="modal-description"></p>
+        <div class="modal-price-row">
+          <span class="product-price modal-price" id="modal-price"></span>
+          <span class="product-price-old" id="modal-price-old"></span>
+          <span class="product-discount" id="modal-discount"></span>
+        </div>
+        <div class="modal-specs" id="modal-specs"></div>
+        <div class="modal-quantity">
+          <div class="qty-controls">
+            <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">
+              <i data-lucide="minus" style="width:16px;height:16px"></i>
+            </button>
+            <span class="qty-display" id="qty-display">1</span>
+            <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">
+              <i data-lucide="plus" style="width:16px;height:16px"></i>
+            </button>
+          </div>
+          <span class="stock-indicator" id="stock-indicator"></span>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="modal-add-cart">
+            <i data-lucide="shopping-bag" style="width:18px;height:18px"></i>
+            Add to Cart
+          </button>
+          <button class="btn btn-secondary btn-icon" id="modal-add-wishlist" aria-label="Add to wishlist">
+            <i data-lucide="heart" style="width:18px;height:18px"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       CART DRAWER
+       ════════════════════════════════ -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3 class="cart-title">
+        <i data-lucide="shopping-bag" style="width:22px;height:22px"></i>
+        Your Cart
+        <span class="cart-count-label" id="cart-count-label">(0 items)</span>
+      </h3>
+      <button class="cart-close" id="cart-close" aria-label="Close cart">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <!-- Populated by JS -->
+    </div>
+    <div class="cart-footer" id="cart-footer">
+      <div class="promo-code">
+        <input type="text" class="promo-input" id="promo-input" placeholder="Enter promo code">
+        <button class="btn btn-secondary btn-sm" id="promo-apply">Apply</button>
+      </div>
+      <div class="cart-summary-row">
+        <span class="label">Subtotal</span>
+        <span class="value" id="cart-subtotal">$0.00</span>
+      </div>
+      <div class="cart-summary-row">
+        <span class="label">Shipping</span>
+        <span class="value" id="cart-shipping">$0.00</span>
+      </div>
+      <div class="cart-summary-row discount" id="discount-row" style="display:none">
+        <span class="label">Discount</span>
+        <span class="value" id="cart-discount">-$0.00</span>
+      </div>
+      <div class="cart-summary-row">
+        <span class="label">Tax (8%)</span>
+        <span class="value" id="cart-tax">$0.00</span>
+      </div>
+      <div class="cart-summary-row total">
+        <span class="label">Total</span>
+        <span class="value" id="cart-total">$0.00</span>
+      </div>
+      <button class="btn btn-accent checkout-btn" id="checkout-btn">
+        <i data-lucide="credit-card" style="width:18px;height:18px"></i>
+        Proceed to Checkout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ════════════════════════════════
+       CHECKOUT MODAL
+       ════════════════════════════════ -->
+  <div class="checkout-overlay" id="checkout-overlay">
+    <div class="checkout-modal" id="checkout-modal">
+      <div class="checkout-header">
+        <h3 class="checkout-title" id="checkout-title">Checkout</h3>
+        <button class="modal-close" id="checkout-close" aria-label="Close checkout">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="checkout-steps" id="checkout-steps">
+        <!-- Populated by JS -->
+      </div>
+      <div id="checkout-body">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       TOAST NOTIFICATIONS
+       ════════════════════════════════ -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ════════════════════════════════
+       FOOTER
+       ════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo">LUXE<span>STORE</span></a>
+        <p>Curating premium lifestyle products since 2024. We believe in quality, design, and the pursuit of the
+          extraordinary.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Twitter"><i data-lucide="twitter"
+              style="width:18px;height:18px"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i data-lucide="instagram"
+              style="width:18px;height:18px"></i></a>
+          <a href="#" class="social-link" aria-label="Facebook"><i data-lucide="facebook"
+              style="width:18px;height:18px"></i></a>
+          <a href="#" class="social-link" aria-label="YouTube"><i data-lucide="youtube"
+              style="width:18px;height:18px"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Electronics</a></li>
+          <li><a href="#">Fashion</a></li>
+          <li><a href="#">Home & Living</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 LUXESTORE. All rights reserved.</span>
+      <span>Designed with ♥ for premium experiences</span>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════
+       SCRIPTS
+       ════════════════════════════════ -->
+  <script src="src/js/products.js"></script>
+  <script src="src/js/app.js"></script>
+</body>
+
+</html>
